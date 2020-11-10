@@ -9,7 +9,7 @@ exports.run = (client, message, args) => {
   if (user.length > 16) return message.channel.send(carac);
   const user_url = user.replace(' ', '_');
   if()
-  request(`https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${user_url}?api_key=RGAPI-c60fc6b0-f2b3-46e0-9587-bcbe3e48c647`, function(error, response, body) {
+  request(`https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${user_url}?api_key=''`, function(error, response, body) { //add your api key
     let nome = user;
     if (response.statusCode == 200) {
       const dispo = new Discord.MessageEmbed()
