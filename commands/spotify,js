@@ -1,0 +1,38 @@
+const Discord = require('discord.js');
+var SpotifyWebApi = require('spotify-web-api-node');
+var spotifyApi = new SpotifyWebApi({
+  clientId: '', //add yours
+  clientSecret: '', //add yours
+  redirectUri: 'example.com/callback'
+});
+spotifyApi.setAccessToken(''); //your acess token
+
+exports.run = async (client, message, args) => {
+
+  const user = args[0]
+
+  if (user.length > 32) {
+    const len = new Discord.MessageEmbed()
+      .setAuthor('O id não pode possuir mais de 32 caracteres.')
+      .setTimestamp()
+    return message.channel.send(len);
+  }
+
+  spotifyApi.getUser(user)
+    .then(function(data) {
+      const embed = new Discord.MessageEmbed()
+        .setAuthor(`O id ${user} está indisponível.`)
+        .setFooter(`Requisitado por ${message.author.username} | Spotify`)
+        .setTimestamp()
+        .setDescription(`https://open.spotify.com/user/${user}`)
+      console.log(`UNA: ${user} | SPOTIFY`)
+      return message.channel.send(embed)
+    }, function(err) {
+      const un = new Discord.MessageEmbed()
+        .setAuthor(`O id ${user} está disponível!`)
+        .setFooter(`Requisitado por ${message.author.username} | Spotify`)
+        .setTimestamp()
+      console.log(`AV: ${user} | SPOTIFY`)
+      return message.channel.send(un);
+    });
+}
