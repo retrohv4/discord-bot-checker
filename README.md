@@ -1,4 +1,4 @@
-![alt text](https://github.com/retrohv4/discord-bot-checker/blob/main/516327-200.png)
+![alt text](https://github.com/retrohv4/discord-bot-checker/blob/main/img/516327-200.png)
 
 # Discord Usernames Bot Checker
 
